@@ -46,7 +46,10 @@ class MQTTPublisher:
         self.topic = topic
         logger.info(f"MQTT host={host}, port={port}")
 
-        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+        try:
+            self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+        except:
+            self.client = mqtt.Client()
         self.client.on_connect = on_connect
         self.client.on_disconnect = on_disconnect
         self.client.on_connect_fail = on_connect_fail
@@ -59,6 +62,15 @@ class MQTTPublisher:
         info['update'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         
         topic = f"{self.topic}/{address}/info"
-        data = json.dumps(info, ensure_ascii=False)
-        self.client.publish(topic, data)
+        str = json.dumps(info, ensure_ascii=False)
+        self.client.publish(topic, str)
         logger.info(f"Published device information. topic={topic}")
+
+    def register_homeassistant(self, component, address, config):
+        address = address.upper()
+        config['state_topic'] = f"{self.topic}/{address}/info"
+
+        topic = f"homeassistant/{component}/{address}/config"
+        str = json.dumps(config, ensure_ascii=False)
+        self.client.publish(topic, str, retain=True)
+        logger.info(f"Registered device information. topic={topic}")

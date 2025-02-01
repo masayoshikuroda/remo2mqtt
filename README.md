@@ -18,5 +18,5 @@ $ python remo2mqtt.py
 # 確認
 
 ```
-$ mosquitto_sub -h localhost -p 1883 -t remo2mqtt/#
+$ mosquitto_sub -h localhost -p 1883 -t 'remo2mqtt/#'
 ```
