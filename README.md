@@ -27,6 +27,7 @@ $ mosquitto_sub -h localhost -p 1883 -t 'remo2mqtt/#'
 
 - remo2mqtt ファイル中の REMO_TOKEN の値を設定
 - remo2qtt ファイルを/etc/default/ にコピー
+- remo2mqtt ファイル中の [Service]セクションのの値を修正
 - remo2mqtt.service ファイルを/etc/systemd/system/ にコピー
 
 ### 有効化
