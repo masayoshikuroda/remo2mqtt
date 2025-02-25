@@ -1,0 +1,15 @@
+[Unit]
+Description=NatureRemo sensor attribute values to MQTT Converter 
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+User=pi
+EnvironmentFile=/etc/default/remo2mqtt
+ExecStart=python3 /home/pi/remo2mqtt/remo2mqtt.py
+Restart=always
+RestartSec=60
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+REMO_URL=https://api.nature.global
+REMO_TOKEN=XXX
+MQTT_HOST=localhost
+MQTT_PORT=1883
+POLLING_TIME=60
+
