@@ -12,7 +12,7 @@ $ export POLLING_INTERVAL=60
 
 # 実行
 ```
-$ python remo2mqtt.py
+$ uv run --env-file remo2mqtt remo2mqtt.py
 ```
 
 # 確認
